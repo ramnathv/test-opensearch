@@ -2,7 +2,10 @@ FROM gitpod/workspace-full:legacy-dazzle-v1
 
 RUN sudo apt-get install -y graphviz
 RUN pyenv install 3.9.7
-RUN pip install -r requirements.txt
+
+# Install python packages
+COPY requirements.txt /tmp/
+RUN pip install --requirement /tmp/requirements.txt
 
 # Install logstash
 RUN curl -o logstash-oss-with-opensearch-output-plugin-7.13.2-linux-x64.tar.gz https://artifacts.opensearch.org/logstash/logstash-oss-with-opensearch-output-plugin-7.13.2-linux-x64.tar.gz
